@@ -1,48 +1,49 @@
-# Lab-NetworkProgramming
+# TCP/UDP Network Analyzer and RTT Measurement
 
-# Lab 03 – Linux Network Programming
+## 📌 Overview
+This project focuses on implementing and analyzing TCP and UDP communication using Python sockets in a Linux environment.
 
-This lab was developed as part of the *Mobile and Sensor Networks* course at Politecnico di Torino. The focus was on implementing UDP and TCP client-server communication in Python and analyzing latency under various conditions. Conducted in a team (Group 05).
+The goal is to understand how data is transmitted over networks, how different protocols behave, and how network conditions such as packet loss affect performance.
 
 ---
 
 ## 🎯 Objectives
-
-- Build basic client-server applications using UDP and TCP sockets
-- Capture and analyze packets with Wireshark
-- Simulate packet loss and observe behavior differences
-- Measure round-trip time (RTT) using timestamps
-- Compare application-level RTT with ping results
+- implement client-server communication using UDP and TCP
+- capture and analyze packets using Wireshark
+- simulate packet loss and observe protocol behavior
+- measure round-trip time (RTT) at application level
+- compare application-level RTT with system-level ping
 
 ---
 
-## 🛠️ Tools and Technologies
-
-- Python 3 (socket programming)
+## 🛠️ Technologies Used
+- Python (socket programming)
+- Linux
 - Wireshark
-- Linux terminal (ifconfig, tc)
-- RTT testing with timestamp analysis
+- tc (traffic control for packet loss simulation)
 
 ---
 
-## 📁 Files
+## ✅ Main Experiments and Results
 
-- `lab_03_group_05.pdf`: Full report
-- `udp_client.py` and `udp_server.py`: Basic UDP communication
-- `tcp_client.py` and `tcp_server.py`: Basic TCP communication
-- `rtt_client.py` and `rtt_server.py`: RTT measurement over TCP
+### 1. UDP Communication
+A UDP client and server were implemented using Python sockets.
+
+The client sent multiple packets to the server, each containing:
+- a message string
+- a sequence number
+
+The server received packets using `recvfrom()` and printed their content.
+
+**Key observations**
+- UDP is connectionless
+- packets are sent without handshake
+- no guarantee of delivery or order
 
 ---
 
-## 👥 Group Members
+### 2. Packet Analysis with Wireshark
+Wireshark was used to capture UDP traffic using filters such as:
 
-- Valerio Collina  
-- Ammar Hussein  
-- Md Ismail Hossain  
-- Md Ataur Rabby
-
----
-
-## 📌 Notes
-
-TCP and UDP were compared under normal and lossy conditions (using tc to simulate 20–30% packet loss). RTT was calculated at application level and validated against system-level ping output.
+```bash
+udp.port == 47999
